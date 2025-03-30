@@ -12,7 +12,7 @@ public class Problem7 {
     }
 
     public static void main(String[] args) {
-        int[] arr = {4, 6, 2, 1};
+        int[] arr = {1, 4, 6, 2};
         printReverse(arr, arr.length);
     }
 }
