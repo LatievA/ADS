@@ -15,7 +15,7 @@ public class Problem2 {
     }
 
     public static void main(String[] args) {
-        int[] arr = {2, 4, 1};
+        int[] arr = {3, 2, 4, 1};
         System.out.println(findAverage(arr, arr.length));
     }
 }
