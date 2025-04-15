@@ -12,14 +12,14 @@ public class MyQueue<T> {
     }
 
     public T dequeue() {
-        if (list.size() == 0) throw new RuntimeException("Queue is empty");
+        if (isEmpty()) throw new RuntimeException("Queue is empty");
         T element = list.get(0);
         list.remove(0);
         return element;
     }
 
     public T peek() {
-        if (list.size() == 0) throw new RuntimeException("Queue is empty");
+        if (isEmpty()) throw new RuntimeException("Queue is empty");
         return list.get(0);
     }
 

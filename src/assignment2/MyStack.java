@@ -12,14 +12,14 @@ public class MyStack<T> {
     }
 
     public T pop() {
-        if (list.size() == 0) throw new RuntimeException("Stack is empty");
+        if (isEmpty()) throw new RuntimeException("Stack is empty");
         T element = list.get(list.size() - 1);
         list.remove(list.size() - 1);
         return element;
     }
 
     public T peek() {
-        if (list.size() == 0) throw new RuntimeException("Stack is empty");
+        if (isEmpty()) throw new RuntimeException("Stack is empty");
         return list.get(list.size() - 1);
     }
 
@@ -29,6 +29,10 @@ public class MyStack<T> {
 
     public boolean isEmpty() {
         return list.size() == 0;
+    }
+
+    public void clear() {
+        ((MyArrayList<T>) list).clear();
     }
 }
 

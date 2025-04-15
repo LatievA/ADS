@@ -30,6 +30,10 @@ public class MyMinHeap {
         return heap.size();
     }
 
+    public void clear() {
+        heap.clear();
+    }
+
     private void heapifyUp(int index) {
         while (index > 0) {
             int parent = (index - 1) / 2;
