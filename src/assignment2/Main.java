@@ -35,6 +35,9 @@ public class Main {
         System.out.println(stack.peek());
         System.out.println(stack.size());
 
+        stack.clear();
+        System.out.println("Stack size after clear: " + stack.size());
+
         MyQueue<Integer> queue = new MyQueue<>();
         queue.enqueue(10);
         queue.enqueue(20);
@@ -44,6 +47,7 @@ public class Main {
         System.out.println(queue.dequeue());
         System.out.println(queue.peek());
         System.out.println(queue.size());
+
 
         MyMinHeap heap = new MyMinHeap();
         heap.add(5);
@@ -55,6 +59,10 @@ public class Main {
         System.out.println(heap.poll());
         System.out.println(heap.peek());
         System.out.println(heap.size());
+
+        System.out.println("MinHeap top before clear: " + heap.peek());
+        heap.clear();
+        System.out.println("MinHeap size after clear: " + heap.size());
     }
 
     public static void print(MyList<Integer> list) {
