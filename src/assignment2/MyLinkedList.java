@@ -24,6 +24,9 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     public void add(T element) {
+        if (hasCycle()) {
+            throw new IllegalStateException("Cycle detected in the list. Cannot perform operation.");
+        }
         MyNode<T> newNode = new MyNode<>(element);
         if (head == null) {
             head = tail = newNode;
@@ -83,4 +86,18 @@ public class MyLinkedList<T> implements MyList<T> {
     public int size() {
         return size;
     }
+
+    private boolean hasCycle() {
+        MyNode<T> slow = head;
+        MyNode<T> fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) return true;
+        }
+        return false;
+    }
+
 }
