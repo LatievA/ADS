@@ -177,13 +177,6 @@ public class MyHashTable<K, V> {
 
         double averageChainLength = (double) totalChainLength / M;
 
-        // Calculate standard deviation
-        double sumSquaredDiff = 0;
-        for (int count : bucketCounts) {
-            sumSquaredDiff += Math.pow(count - averageChainLength, 2);
-        }
-        double stdDev = Math.sqrt(sumSquaredDiff / M);
-
         // Print results
         System.out.println("Hash Table Distribution Analysis");
         System.out.println("==============================");
@@ -192,7 +185,6 @@ public class MyHashTable<K, V> {
         System.out.println("Empty buckets: " + emptyBuckets + " (" + (emptyBuckets * 100.0 / M) + "%)");
         System.out.println("Max chain length: " + maxChainLength);
         System.out.println("Average chain length: " + String.format("%.2f", averageChainLength));
-        System.out.println("Standard deviation: " + String.format("%.2f", stdDev));
 
         // Print individual bucket counts
         System.out.println("\nBucket distribution:");
