@@ -151,4 +151,53 @@ public class MyHashTable<K, V> {
         // Value not found
         return null;
     }
+
+    // Method to analyze and print the distribution of elements in the hash table
+    public void printBucketDistribution() {
+        int[] bucketCounts = new int[M];
+        int emptyBuckets = 0;
+        int maxChainLength = 0;
+        int totalChainLength = 0;
+
+        // Count elements in each bucket
+        for (int i = 0; i < M; i++) {
+            int count = 0;
+            HashNode<K, V> current = chainArray[i];
+            while (current != null) {
+                count++;
+                current = current.next;
+            }
+            bucketCounts[i] = count;
+
+            // Update statistics
+            if (count == 0) emptyBuckets++;
+            if (count > maxChainLength) maxChainLength = count;
+            totalChainLength += count;
+        }
+
+        double averageChainLength = (double) totalChainLength / M;
+
+        // Calculate standard deviation
+        double sumSquaredDiff = 0;
+        for (int count : bucketCounts) {
+            sumSquaredDiff += Math.pow(count - averageChainLength, 2);
+        }
+        double stdDev = Math.sqrt(sumSquaredDiff / M);
+
+        // Print results
+        System.out.println("Hash Table Distribution Analysis");
+        System.out.println("==============================");
+        System.out.println("Total elements: " + size);
+        System.out.println("Total buckets: " + M);
+        System.out.println("Empty buckets: " + emptyBuckets + " (" + (emptyBuckets * 100.0 / M) + "%)");
+        System.out.println("Max chain length: " + maxChainLength);
+        System.out.println("Average chain length: " + String.format("%.2f", averageChainLength));
+        System.out.println("Standard deviation: " + String.format("%.2f", stdDev));
+
+        // Print individual bucket counts
+        System.out.println("\nBucket distribution:");
+        for (int i = 0; i < M; i++) {
+            System.out.println("Bucket " + i + ": " + bucketCounts[i] + " elements");
+        }
+    }
 }
