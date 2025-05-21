@@ -27,24 +27,15 @@ public class DijkstraSearch<Vertex> extends Search<Vertex> {
             unsettledNodes.remove(currentNode);
 
             for (Vertex neighbor : graph.adjacencyList(currentNode)) {
-                double newDistance = getShortestDistance(currentNode) + getDistance(currentNode, neighbor);
+                double newDistance = getShortestDistance(currentNode) + graph.getWeight(currentNode, neighbor);
 
                 if (getShortestDistance(neighbor) > newDistance) {
                     distances.put(neighbor, newDistance);
-                    edgeTo.put(neighbor, currentNode); // inverted adding
+                    edgeTo.put(neighbor, currentNode);
                     unsettledNodes.add(neighbor);
                 }
             }
         }
-    }
-
-    private double getDistance(Vertex node, Vertex target) {
-        for (Edge<Vertex> edge : graph.getEdges(node)) {
-            if (edge.getDest().equals(target))
-                return edge.getWeight();
-        }
-
-        throw new RuntimeException("Not found!");
     }
 
     private Vertex getVertexWithMinimumWeight(Set<Vertex> vertices) {
@@ -52,7 +43,6 @@ public class DijkstraSearch<Vertex> extends Search<Vertex> {
         for (Vertex vertex : vertices) {
             if (minimum == null) {
                 minimum = vertex;
-
                 continue;
             }
 
@@ -65,8 +55,6 @@ public class DijkstraSearch<Vertex> extends Search<Vertex> {
 
     private double getShortestDistance(Vertex destination) {
         Double d = distances.get(destination);
-
         return (d == null ? Double.MAX_VALUE : d);
     }
 }
-
