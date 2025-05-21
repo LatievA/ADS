@@ -1,42 +1,56 @@
 package assignment4;
 
-public class Edge<T> {
-    private Vertex<T> source;
-    private Vertex<T> destination;
-    private double weight;
+import java.util.Objects;
 
-    public Edge(Vertex<T> source, Vertex<T> destination) {
+public class Edge<Vertex> {
+    private Vertex source;
+    private Vertex dest;
+    private Double weight;
+
+    public Edge(Vertex source, Vertex dest, Double weight) {
         this.source = source;
-        this.destination = destination;
-        weight = 0;
-    }
-
-    public Edge(Vertex<T> source, Vertex<T> destination, double weight) {
-        this( source, destination);
+        this.dest = dest;
         this.weight = weight;
     }
 
-    public Vertex<T> getSource() {
+    public Edge(Vertex source, Vertex dest) {
+        this.source = source;
+        this.dest = dest;
+    }
+
+    public void setSource(Vertex source) {
+        this.source = source;
+    }
+
+    public Vertex getSource() {
         return source;
     }
 
-    public void setSource(Vertex<T> source) {
-        this.source = source;
+    public void setDest(Vertex dest) {
+        this.dest = dest;
     }
 
-    public Vertex<T> getDestination() {
-        return destination;
+    public Vertex getDest() {
+        return dest;
     }
 
-    public void setDestination(Vertex<T> destination) {
-        this.destination = destination;
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // references compared
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Edge<?> otherEdge = (Edge<?>) o;
+
+        return Objects.equals(this.source, otherEdge.source) &&
+                Objects.equals(this.dest, otherEdge.dest);
     }
 }
